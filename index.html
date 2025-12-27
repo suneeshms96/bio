@@ -28,11 +28,39 @@ body {
   line-height: 1.6;
 }
 
+/* ===== HEADER WITH BACKGROUND IMAGE ===== */
 header {
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  position: relative;
   color: #fff;
-  padding: 60px 20px;
+  padding: 70px 20px;
   text-align: center;
+  overflow: hidden;
+}
+
+/* Background image layer */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+/* Blue gradient overlay */
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  z-index: 1;
+}
+
+/* Ensure content is above background layers */
+header > * {
+  position: relative;
+  z-index: 2;
 }
 
 .profile-wrapper {
@@ -73,6 +101,7 @@ header p {
   font-weight: 500;
 }
 
+/* ===== CONTENT ===== */
 .container {
   max-width: 1000px;
   margin: auto;
@@ -122,7 +151,7 @@ footer {
 
 <body>
 
-<header>
+<header id="siteHeader">
   <div class="profile-wrapper">
     <img id="profileImage" class="profile-pic" alt="Suneesh M Suresh">
   </div>
@@ -144,9 +173,8 @@ footer {
 <section>
   <h2>Professional Summary</h2>
   <p>
-    DevOps Engineer with 6+ years of experience in cloud infrastructure, automation,
-    CI/CD pipelines, Kubernetes, and Linux system administration across hybrid cloud
-    environments.
+    DevOps Engineer with 6+ years of experience in cloud infrastructure,
+    automation, CI/CD pipelines, Kubernetes, and Linux system administration.
   </p>
 </section>
 
@@ -154,44 +182,94 @@ footer {
   <h2>Experience</h2>
 
   <h3>DevOps Engineer – IBM India</h3>
-  <p><em>Sep 2023 – Present</em></p>
+  <p><em>Sep 2023 – Present | Kochi, Kerala</em></p>
   <ul>
-    <li>Managed OpenShift application deployments</li>
-    <li>Built Jenkins CI/CD pipelines</li>
-    <li>Automated GitHub operations using Python & APIs</li>
-    <li>Reduced manual work by 30% using automation</li>
+    <li>Deployed and managed applications on OpenShift clusters</li>
+    <li>Designed and automated CI/CD pipelines using Jenkins</li>
+    <li>Automated GitHub repository management using Python & REST APIs</li>
+    <li>Reduced manual operational tasks by ~30% using shell scripting</li>
+    <li>Supported compliance (NFR) and audit activities across projects</li>
+    <li>Performed vulnerability assessments and coordinated remediation</li>
+    <li>Developed internal dashboards using Python and HTML</li>
   </ul>
 
   <br>
 
-  <h3>Sr. Platform Engineer – Quantiphi</h3>
-  <p><em>Aug 2021 – Aug 2023</em></p>
+  <h3>Sr. Platform Engineer – Quantiphi Analytics</h3>
+  <p><em>Aug 2021 – Aug 2023 | Trivandrum, Kerala</em></p>
   <ul>
-    <li>AWS infrastructure using Terraform & CloudFormation</li>
-    <li>Azure DevOps & GitHub pipelines</li>
-    <li>EKS, ECS, Elastic Beanstalk deployments</li>
+    <li>Designed and managed AWS infrastructure (EC2, VPC, IAM, RDS, EKS)</li>
+    <li>Implemented IaC using Terraform and CloudFormation</li>
+    <li>Built CI/CD pipelines using Azure DevOps and GitHub Actions</li>
+    <li>Deployed container workloads using ECS, EKS, and Elastic Beanstalk</li>
+    <li>Improved application security using SonarQube and Qualys</li>
+    <li>Optimized AWS costs and implemented autoscaling strategies</li>
+    <li>Integrated JFrog Artifactory and S3 for artifact management</li>
+  </ul>
+
+  <br>
+
+  <h3>L2 Linux System Administrator – Hashroot Technologies</h3>
+  <p><em>May 2019 – Aug 2021 | Ernakulam, Kerala</em></p>
+  <ul>
+    <li>Managed VPS, dedicated, and shared hosting servers for clients</li>
+    <li>Performed server hardening and security best practices</li>
+    <li>Handled website and database migrations with minimal downtime</li>
+    <li>Automated routine system tasks using Bash and Python</li>
+    <li>Monitored infrastructure using Nagios and Zabbix</li>
+    <li>Supported AWS setup, scaling, and client infrastructure needs</li>
+    <li>Collaborated with developers for application server deployments</li>
   </ul>
 </section>
 
 <section>
-  <h2>Technical Skills</h2>
+    <h2>Technical Skills</h2>
 
-  <div class="skills">
-    <span>AWS</span><span>GCP</span><span>Azure</span><span>IBM Cloud</span>
-    <span>Docker</span><span>Kubernetes</span><span>OpenShift</span>
-    <span>Terraform</span><span>Ansible</span><span>Jenkins</span>
-    <span>Python</span><span>Bash</span>
-  </div>
-</section>
+    <h4>Cloud</h4>
+    <div class="skills">
+      <span>AWS</span><span>GCP</span><span>Azure</span><span>IBM Cloud</span>
+    </div>
 
-<section>
-  <h2>Certifications</h2>
-  <ul>
-    <li>AWS Certified Solutions Architect – Associate</li>
-    <li>RHCSA – Red Hat Certified System Administrator</li>
-    <li>RHCE – Red Hat Certified Engineer</li>
-  </ul>
-</section>
+    <h4>DevOps & Automation</h4>
+    <div class="skills">
+      <span>Terraform</span><span>CloudFormation</span><span>Ansible</span>
+      <span>Jenkins</span><span>GitHub Actions</span>
+    </div>
+
+    <h4>Containers & Orchestration</h4>
+    <div class="skills">
+      <span>Docker</span><span>Kubernetes</span><span>OpenShift</span><span>EKS</span>
+    </div>
+
+    <h4>Monitoring & Security</h4>
+    <div class="skills">
+      <span>Nagios</span><span>Zabbix</span><span>CloudWatch</span>
+      <span>SonarQube</span><span>Qualys</span>
+    </div>
+
+    <h4>Scripting</h4>
+    <div class="skills">
+      <span>Python</span><span>Bash</span><span>Groovy</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <ul>
+      <li><strong>B.Sc Computer Applications</strong> — MG University (2017)</li>
+      <li>Higher Secondary — Kerala Board (2013)</li>
+      <li>Secondary School — Kerala Board (2011)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <ul>
+      <li>AWS Certified Solutions Architect – Associate (2021)</li>
+      <li>RHCSA – Red Hat Certified System Administrator (2019)</li>
+      <li>RHCE – Red Hat Certified Engineer (2019)</li>
+    </ul>
+  </section>
 
 </div>
 
@@ -201,20 +279,31 @@ footer {
 
 <!-- ================= JAVASCRIPT ================= -->
 <script>
-/* === Load profile image dynamically from assets === */
-const imagePath = "assets/profile.jpg";
-const img = document.getElementById("profileImage");
-
-img.src = imagePath;
-
-/* Fallback if image not found */
-img.onerror = () => {
-  img.src = "https://via.placeholder.com/170?text=Photo";
+/* Profile image loader */
+const profileImg = document.getElementById("profileImage");
+profileImg.src = "assets/profile.jpg";
+profileImg.onerror = () => {
+  profileImg.src = "https://via.placeholder.com/170?text=Photo";
 };
 
-/* Fade-in animation for sections */
-const sections = document.querySelectorAll("section");
+/* Header background image loader */
+const header = document.getElementById("siteHeader");
+const bgImage = "assets/header-bg.jpg";
 
+/* Dynamically inject bg image into ::before */
+header.style.setProperty("--header-bg", `url(${bgImage})`);
+
+/* Apply background using JS */
+const style = document.createElement("style");
+style.innerHTML = `
+  header::before {
+    background-image: url('${bgImage}');
+  }
+`;
+document.head.appendChild(style);
+
+/* Section fade-in */
+const sections = document.querySelectorAll("section");
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
