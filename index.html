@@ -1,311 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suneesh M Suresh | DevOps Engineer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Suneesh M Suresh - DevOps Engineer Portfolio">
+    <title>Suneesh M Suresh | DevOps Engineer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #64ffda; /* Teal accent */
+            --secondary: #8892b0; /* Light Slate */
+            --bg-dark: #0a192f; /* Navy */
+            --bg-light: #112240; /* Light Navy */
+            --text-main: #ccd6f6; /* Lightest Slate */
+            --font-main: 'Poppins', sans-serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
 
-<style>
-:root {
-  --primary: #0f172a;
-  --secondary: #2563eb;
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #334155;
-  --header-bg: none;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-/* ===== HEADER ===== */
-header {
-  position: relative;
-  color: #fff;
-  padding: 70px 20px;
-  text-align: center;
-  overflow: hidden;
-}
+        /* --- Header / Hero Section --- */
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
 
-/* Background image */
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--header-bg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.22;
-  z-index: 0;
-}
+        /* Parallax Background */
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.9)), url('assets/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
 
-/* Blue gradient overlay */
-header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  z-index: 1;
-}
+        .hero-content {
+            z-index: 1;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
 
-/* Keep content above layers */
-header > * {
-  position: relative;
-  z-index: 2;
-}
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-.profile-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-}
+        h1 {
+            font-size: 3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
 
-.profile-pic {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #60a5fa;
-  box-shadow: 0 0 25px rgba(96,165,250,0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .role {
+            font-family: var(--font-code);
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
 
-.profile-pic:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(96,165,250,0.9);
-}
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 15px;
+            color: var(--secondary);
+        }
 
-header h1 {
-  font-size: 2.5rem;
-  margin: 10px 0 5px;
-}
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
 
-header p {
-  margin: 5px 0;
-  opacity: 0.9;
-}
+        /* --- Navigation --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 25, 47, 0.95);
+            padding: 15px 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #233554;
+        }
 
-.links a {
-  color: #93c5fd;
-  margin: 0 8px;
-  text-decoration: none;
-  font-weight: 500;
-}
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
 
-/* ===== CONTENT ===== */
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 40px 20px;
-}
+        .nav-link {
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
 
-section {
-  background: var(--card);
-  padding: 30px;
-  margin-bottom: 25px;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  opacity: 0;
-  transform: translateY(20px);
-}
+        .nav-link:hover { color: var(--primary); }
 
-section h2 {
-  color: var(--primary);
-  margin-bottom: 15px;
-  border-bottom: 2px solid var(--secondary);
-  display: inline-block;
-  padding-bottom: 5px;
-}
+        /* --- Sections General --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-.skills span {
-  display: inline-block;
-  background: #e0e7ff;
-  color: #1e3a8a;
-  padding: 7px 14px;
-  border-radius: 20px;
-  margin: 6px 6px 0 0;
-  font-size: 0.9rem;
-  transition: transform 0.2s ease;
-}
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+        }
 
-.skills span:hover {
-  transform: scale(1.1);
-}
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 1px;
+            background-color: #233554;
+            margin-left: 20px;
+        }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #64748b;
-}
-</style>
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Experience --- */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid #233554;
+        }
+
+        .job-card {
+            background-color: var(--bg-light);
+            padding: 25px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .job-card::before {
+            content: "▹";
+            position: absolute;
+            left: -42px;
+            top: 25px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            background: var(--bg-dark);
+        }
+
+        .job-title { font-size: 1.3rem; color: var(--text-main); }
+        .company { color: var(--primary); font-family: var(--font-code); font-size: 1rem; }
+        .duration { font-size: 0.9rem; color: var(--secondary); margin-bottom: 15px; display: block;}
+        
+        .job-details li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .job-details li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* --- Skills --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            border: 1px solid var(--primary);
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: var(--primary);
+        }
+
+        /* --- Education & Certs --- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 5px;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .cert-card h4 { color: var(--text-main); }
+        .cert-card p { color: var(--secondary); font-size: 0.9rem; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-top: 50px;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-container { gap: 15px; }
+            section { padding: 60px 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header id="siteHeader">
-  <div class="profile-wrapper">
-    <img id="profileImage" class="profile-pic" alt="Suneesh M Suresh">
-  </div>
+    <header id="home">
+        <div class="header-bg"></div>
+        <div class="hero-content">
+            <img src="assets/profile.jpg" alt="Suneesh M Suresh" class="profile-img">
+            <h1>Suneesh M Suresh</h1>
+            <div class="role">DevOps Engineer</div>
+            <p style="color: var(--secondary); max-width: 600px; margin: 0 auto 20px auto;">
+                Experienced DevOps Engineer with 6+ years of expertise in AWS, Kubernetes, and CI/CD automation.
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/suneeshms96" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/suneeshms96" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:suneeshsureshms@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
 
-  <h1>Suneesh M Suresh</h1>
-  <p>DevOps Engineer | Cloud & Platform Specialist</p>
+    <nav>
+        <div class="nav-container">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#education" class="nav-link">Education</a>
+        </div>
+    </nav>
 
-  <div class="links">
-    <a href="mailto:suneeshsureshms@gmail.com">Email</a> |
-    <a href="https://www.linkedin.com/in/suneeshms96" target="_blank">LinkedIn</a> |
-    <a href="https://github.com/suneeshms96" target="_blank">GitHub</a>
-  </div>
+    <section id="experience" class="hidden">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            
+            <div class="job-card">
+                <h3 class="job-title">DevOps Engineer</h3>
+                <span class="company">IBM India Private Limited | Kochi</span>
+                <span class="duration">Sep 2023 - Present</span>
+                <ul class="job-details">
+                    <li>Deployed and managed applications across OpenShift clusters.</li>
+                    <li>Designed and automated CI/CD pipelines using Jenkins.</li>
+                    <li>Automated GitHub repository management using Python and REST APIs.</li>
+                    <li>Developed dashboard using Python and HTML for managing scan results.</li>
+                </ul>
+            </div>
 
-  <p>Kottayam, Kerala, India</p>
-</header>
+            <div class="job-card">
+                <h3 class="job-title">Sr. Platform Engineer</h3>
+                <span class="company">Quantiphi Analytics Solution | Trivandrum</span>
+                <span class="duration">Aug 2021 - Aug 2023</span>
+                <ul class="job-details">
+                    <li>Managed AWS infrastructure (EC2, EKS, Lambda, Terraform).</li>
+                    <li>Built Azure DevOps pipelines and implemented GitHub workflows.</li>
+                    <li>Optimized AWS costs and implemented auto-scaling.</li>
+                    <li>Integrated JFrog Artifactory and S3 for secure artifact management.</li>
+                </ul>
+            </div>
 
-<div class="container">
+            <div class="job-card">
+                <h3 class="job-title">L2 Linux System Administrator</h3>
+                <span class="company">Hashroot Technologies | Ernakulam</span>
+                <span class="duration">May 2019 - Aug 2021</span>
+                <ul class="job-details">
+                    <li>Managed VPS, dedicated, and shared servers.</li>
+                    <li>Wrote Bash and Python scripts to automate routine system tasks.</li>
+                    <li>Monitored servers using Nagios and Zabbix.</li>
+                </ul>
+            </div>
 
-<section>
-  <h2>Professional Summary</h2>
-  <p>
-    DevOps Engineer with 6+ years of experience in cloud infrastructure,
-    automation, CI/CD pipelines, Kubernetes, and Linux system administration
-    across hybrid cloud environments.
-  </p>
-</section>
+        </div>
+    </section>
 
-<section>
-  <h2>Experience</h2>
+    <section id="skills" class="hidden">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            
+            <div class="skill-category">
+                <h3>Cloud Platforms</h3>
+                <div class="skill-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">GCP</span>
+                    <span class="tag">IBM Cloud</span>
+                    <span class="tag">Azure</span>
+                </div>
+            </div>
 
-  <h3>DevOps Engineer – IBM India</h3>
-  <p><em>Sep 2023 – Present | Kochi, Kerala</em></p>
-  <ul>
-    <li>Deployed and managed applications on OpenShift clusters</li>
-    <li>Designed and automated CI/CD pipelines using Jenkins</li>
-    <li>Automated GitHub repository management using Python & REST APIs</li>
-    <li>Reduced manual operational tasks by ~30%</li>
-    <li>Supported compliance and audit activities</li>
-    <li>Performed vulnerability assessments and remediation</li>
-    <li>Developed internal dashboards using Python and HTML</li>
-  </ul>
+            <div class="skill-category">
+                <h3>Containerization</h3>
+                <div class="skill-tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">OpenShift</span>
+                    <span class="tag">EKS</span>
+                </div>
+            </div>
 
-  <br>
+            <div class="skill-category">
+                <h3>IaC & Automation</h3>
+                <div class="skill-tags">
+                    <span class="tag">Terraform</span>
+                    <span class="tag">Ansible</span>
+                    <span class="tag">CloudFormation</span>
+                </div>
+            </div>
 
-  <h3>Sr. Platform Engineer – Quantiphi Analytics</h3>
-  <p><em>Aug 2021 – Aug 2023 | Trivandrum, Kerala</em></p>
-  <ul>
-    <li>Designed AWS infrastructure using Terraform & CloudFormation</li>
-    <li>Built CI/CD pipelines using Azure DevOps and GitHub Actions</li>
-    <li>Managed EKS, ECS, and Elastic Beanstalk deployments</li>
-    <li>Improved security using SonarQube and Qualys</li>
-    <li>Optimized AWS costs and autoscaling</li>
-  </ul>
+            <div class="skill-category">
+                <h3>CI/CD & Tools</h3>
+                <div class="skill-tags">
+                    <span class="tag">Jenkins</span>
+                    <span class="tag">Git/GitHub</span>
+                    <span class="tag">JFrog</span>
+                    <span class="tag">SonarQube</span>
+                </div>
+            </div>
 
-  <br>
+            <div class="skill-category">
+                <h3>Scripting</h3>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">Groovy</span>
+                </div>
+            </div>
 
-  <h3>L2 Linux System Administrator – Hashroot Technologies</h3>
-  <p><em>May 2019 – Aug 2021 | Ernakulam, Kerala</em></p>
-  <ul>
-    <li>Managed VPS, dedicated, and shared servers</li>
-    <li>Performed server hardening and security best practices</li>
-    <li>Handled website and database migrations</li>
-    <li>Automated tasks using Bash and Python</li>
-    <li>Monitoring using Nagios and Zabbix</li>
-    <li>Supported AWS setup and scaling</li>
-  </ul>
-</section>
+        </div>
+    </section>
 
-<section>
-    <h2>Technical Skills</h2>
+    <section id="education" class="hidden">
+        <h2 class="section-title">Certifications & Education</h2>
+        
+        <h3 style="color: var(--text-main); margin-bottom: 20px;">Certifications</h3>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <h4>AWS Certified Solutions Architect</h4>
+                <p>Associate (2021)</p>
+            </div>
+            <div class="cert-card">
+                <h4>RHCSA & RHCE</h4>
+                <p>Red Hat Certified (2019)</p>
+            </div>
+        </div>
 
-    <h4>Cloud</h4>
-    <div class="skills">
-      <span>AWS</span><span>GCP</span><span>Azure</span><span>IBM Cloud</span>
-    </div>
+        <h3 style="color: var(--text-main); margin: 40px 0 20px 0;">Education</h3>
+        <div class="job-card">
+            <h3 class="job-title">BSc in Computer Application</h3>
+            <span class="company">K.E College, Mannanam | M.G University</span>
+            <span class="duration">Graduated 2017</span>
+        </div>
+    </section>
 
-    <h4>DevOps & Automation</h4>
-    <div class="skills">
-      <span>Terraform</span><span>CloudFormation</span><span>Ansible</span>
-      <span>Jenkins</span><span>GitHub Actions</span>
-    </div>
+    <footer>
+        <p>Designed & Built by Suneesh M Suresh</p>
+        <p>Kottayam, Kerala, India</p>
+    </footer>
 
-    <h4>Containers & Orchestration</h4>
-    <div class="skills">
-      <span>Docker</span><span>Kubernetes</span><span>OpenShift</span><span>EKS</span>
-    </div>
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-    <h4>Monitoring & Security</h4>
-    <div class="skills">
-      <span>Nagios</span><span>Zabbix</span><span>CloudWatch</span>
-      <span>SonarQube</span><span>Qualys</span>
-    </div>
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
 
-    <h4>Scripting</h4>
-    <div class="skills">
-      <span>Python</span><span>Bash</span><span>Groovy</span>
-    </div>
-  </section>
-
-<section>
-  <h2>Education</h2>
-  <ul>
-    <li><strong>B.Sc Computer Applications</strong> — MG University (2017)</li>
-    <li>Higher Secondary — Kerala Board (2013)</li>
-    <li>Secondary School — Kerala Board (2011)</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Certifications</h2>
-  <ul>
-    <li>AWS Certified Solutions Architect – Associate (2021)</li>
-    <li>RHCSA – Red Hat Certified System Administrator (2019)</li>
-    <li>RHCE – Red Hat Certified Engineer (2019)</li>
-  </ul>
-</section>
-
-</div>
-
-<footer>
-© 2025 Suneesh M Suresh
-</footer>
-
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-/* Load profile image */
-const profileImg = document.getElementById("profileImage");
-profileImg.src = "assets/profile.jpg";
-profileImg.onerror = () => {
-  profileImg.src = "https://via.placeholder.com/170?text=Photo";
-};
-
-/* Load header background image (CORRECT METHOD) */
-const header = document.getElementById("siteHeader");
-header.style.setProperty(
-  "--header-bg",
-  "url('assets/header-bg.jpg')"
-);
-
-/* Fade-in animation */
-const sections = document.querySelectorAll("section");
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = "translateY(0)";
-    }
-  });
-}, { threshold: 0.1 });
-
-sections.forEach(section => observer.observe(section));
-</script>
-
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 </body>
 </html>
