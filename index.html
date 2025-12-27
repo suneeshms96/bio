@@ -14,6 +14,7 @@
   --bg: #f8fafc;
   --card: #ffffff;
   --text: #334155;
+  --header-bg: none;
 }
 
 * {
@@ -28,7 +29,7 @@ body {
   line-height: 1.6;
 }
 
-/* ===== HEADER WITH BACKGROUND IMAGE ===== */
+/* ===== HEADER ===== */
 header {
   position: relative;
   color: #fff;
@@ -37,14 +38,15 @@ header {
   overflow: hidden;
 }
 
-/* Background image layer */
+/* Background image */
 header::before {
   content: "";
   position: absolute;
   inset: 0;
+  background-image: var(--header-bg);
   background-size: cover;
   background-position: center;
-  opacity: 0.25;
+  opacity: 0.22;
   z-index: 0;
 }
 
@@ -57,7 +59,7 @@ header::after {
   z-index: 1;
 }
 
-/* Ensure content is above background layers */
+/* Keep content above layers */
 header > * {
   position: relative;
   z-index: 2;
@@ -174,7 +176,8 @@ footer {
   <h2>Professional Summary</h2>
   <p>
     DevOps Engineer with 6+ years of experience in cloud infrastructure,
-    automation, CI/CD pipelines, Kubernetes, and Linux system administration.
+    automation, CI/CD pipelines, Kubernetes, and Linux system administration
+    across hybrid cloud environments.
   </p>
 </section>
 
@@ -187,9 +190,9 @@ footer {
     <li>Deployed and managed applications on OpenShift clusters</li>
     <li>Designed and automated CI/CD pipelines using Jenkins</li>
     <li>Automated GitHub repository management using Python & REST APIs</li>
-    <li>Reduced manual operational tasks by ~30% using shell scripting</li>
-    <li>Supported compliance (NFR) and audit activities across projects</li>
-    <li>Performed vulnerability assessments and coordinated remediation</li>
+    <li>Reduced manual operational tasks by ~30%</li>
+    <li>Supported compliance and audit activities</li>
+    <li>Performed vulnerability assessments and remediation</li>
     <li>Developed internal dashboards using Python and HTML</li>
   </ul>
 
@@ -198,13 +201,11 @@ footer {
   <h3>Sr. Platform Engineer – Quantiphi Analytics</h3>
   <p><em>Aug 2021 – Aug 2023 | Trivandrum, Kerala</em></p>
   <ul>
-    <li>Designed and managed AWS infrastructure (EC2, VPC, IAM, RDS, EKS)</li>
-    <li>Implemented IaC using Terraform and CloudFormation</li>
+    <li>Designed AWS infrastructure using Terraform & CloudFormation</li>
     <li>Built CI/CD pipelines using Azure DevOps and GitHub Actions</li>
-    <li>Deployed container workloads using ECS, EKS, and Elastic Beanstalk</li>
-    <li>Improved application security using SonarQube and Qualys</li>
-    <li>Optimized AWS costs and implemented autoscaling strategies</li>
-    <li>Integrated JFrog Artifactory and S3 for artifact management</li>
+    <li>Managed EKS, ECS, and Elastic Beanstalk deployments</li>
+    <li>Improved security using SonarQube and Qualys</li>
+    <li>Optimized AWS costs and autoscaling</li>
   </ul>
 
   <br>
@@ -212,13 +213,12 @@ footer {
   <h3>L2 Linux System Administrator – Hashroot Technologies</h3>
   <p><em>May 2019 – Aug 2021 | Ernakulam, Kerala</em></p>
   <ul>
-    <li>Managed VPS, dedicated, and shared hosting servers for clients</li>
+    <li>Managed VPS, dedicated, and shared servers</li>
     <li>Performed server hardening and security best practices</li>
-    <li>Handled website and database migrations with minimal downtime</li>
-    <li>Automated routine system tasks using Bash and Python</li>
-    <li>Monitored infrastructure using Nagios and Zabbix</li>
-    <li>Supported AWS setup, scaling, and client infrastructure needs</li>
-    <li>Collaborated with developers for application server deployments</li>
+    <li>Handled website and database migrations</li>
+    <li>Automated tasks using Bash and Python</li>
+    <li>Monitoring using Nagios and Zabbix</li>
+    <li>Supported AWS setup and scaling</li>
   </ul>
 </section>
 
@@ -253,23 +253,23 @@ footer {
     </div>
   </section>
 
-  <section>
-    <h2>Education</h2>
-    <ul>
-      <li><strong>B.Sc Computer Applications</strong> — MG University (2017)</li>
-      <li>Higher Secondary — Kerala Board (2013)</li>
-      <li>Secondary School — Kerala Board (2011)</li>
-    </ul>
-  </section>
+<section>
+  <h2>Education</h2>
+  <ul>
+    <li><strong>B.Sc Computer Applications</strong> — MG University (2017)</li>
+    <li>Higher Secondary — Kerala Board (2013)</li>
+    <li>Secondary School — Kerala Board (2011)</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Certifications</h2>
-    <ul>
-      <li>AWS Certified Solutions Architect – Associate (2021)</li>
-      <li>RHCSA – Red Hat Certified System Administrator (2019)</li>
-      <li>RHCE – Red Hat Certified Engineer (2019)</li>
-    </ul>
-  </section>
+<section>
+  <h2>Certifications</h2>
+  <ul>
+    <li>AWS Certified Solutions Architect – Associate (2021)</li>
+    <li>RHCSA – Red Hat Certified System Administrator (2019)</li>
+    <li>RHCE – Red Hat Certified Engineer (2019)</li>
+  </ul>
+</section>
 
 </div>
 
@@ -277,32 +277,23 @@ footer {
 © 2025 Suneesh M Suresh
 </footer>
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ===== JAVASCRIPT ===== -->
 <script>
-/* Profile image loader */
+/* Load profile image */
 const profileImg = document.getElementById("profileImage");
 profileImg.src = "assets/profile.jpg";
 profileImg.onerror = () => {
   profileImg.src = "https://via.placeholder.com/170?text=Photo";
 };
 
-/* Header background image loader */
+/* Load header background image (CORRECT METHOD) */
 const header = document.getElementById("siteHeader");
-const bgImage = "assets/header-bg.jpg";
+header.style.setProperty(
+  "--header-bg",
+  "url('assets/header-bg.jpg')"
+);
 
-/* Dynamically inject bg image into ::before */
-header.style.setProperty("--header-bg", `url(${bgImage})`);
-
-/* Apply background using JS */
-const style = document.createElement("style");
-style.innerHTML = `
-  header::before {
-    background-image: url('${bgImage}');
-  }
-`;
-document.head.appendChild(style);
-
-/* Section fade-in */
+/* Fade-in animation */
 const sections = document.querySelectorAll("section");
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
